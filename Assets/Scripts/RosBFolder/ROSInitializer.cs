@@ -65,7 +65,7 @@ public class ROSInitializer : MonoBehaviour
     {
 
         StartCoroutine(SendImage()); // Separate functions for every video feed.
-        //StartCoroutine(SendImagefront());
+        StartCoroutine(SendImagefront());
         //StartCoroutine(SendImagedown());
         ros.Render();
 
@@ -78,7 +78,7 @@ public class ROSInitializer : MonoBehaviour
         yield return new WaitForEndOfFrame();
         int width = 640; // Width and height of the output image
         int height = 360;
-        RenderTexture tex2 = GetComponent<Camera>().targetTexture; //using a render texture to get Video feed projection. 
+        RenderTexture tex2 = frontCam.GetComponent<Camera>().targetTexture; //using a render texture to get Video feed projection. 
         Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false); // Defining a texture which will read the Render texture
         RenderTexture.active = tex2;
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0); // reading the render texture into 'tex'
